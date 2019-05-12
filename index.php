@@ -1,11 +1,11 @@
 <?php
 	session_start();
-	include_once "app\db.php";
-	include_once "app\auth.php";
-	include_once "app\model\\request.php";
-	include_once "app\model\user.php";
-	include_once "app\model\urlCategory.php";
-	include_once "app\model\url.php";
+	include_once "/app/db.php";
+	include_once "/app/auth.php";
+	include_once "/app/model/request.php";
+	include_once "/app/model/user.php";
+	include_once "/app/model/urlCategory.php";
+	include_once "/app/model/url.php";
 
 	$db = new DB(
 		$_SERVER['DATABASE_NAME'],
