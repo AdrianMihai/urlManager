@@ -1,0 +1,79 @@
+html, body{
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	background-color: #94b7bc;
+	background-image: url('/public/img/inhabited_walls_magic.jpg');
+	background-size: 100% 100%;
+	background-repeat: repeat-y;
+	background-position-y: 3em;
+	background-blend-mode: darken;
+}
+
+.main-container {
+	width: 100% !important;
+	padding: 5em 1em;
+}
+
+.urls-table {
+	display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+} 
+
+.url-editor {
+	box-sizing: border-box;
+	padding: 1em;
+}
+
+.tableContainer {
+	max-height: 250px;
+	overflow-x: scroll;
+	overflow-y: scroll;
+}
+
+.tableContainer::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+    background-color: #F5F5F5;
+
+}
+
+.tableContainer::-webkit-scrollbar-thumb {
+    background-color: #333;
+    border-radius: 4px;
+}
+
+.selectableRow {
+	cursor: pointer;
+}
+
+.loaderContainer {
+	text-align: center;
+	padding: 50px 0px;
+}
+
+.noUrlsText {
+	padding: 1em 0px;
+}
+
+.selectableRow {
+	cursor: pointer;
+
+	transition: all .2s ease-in-out;
+}
+
+.selectableRow:hover {
+	background: #bdbdbd;
+}
+
+.editor-header {
+	height: 52px;
+}
+
+.editor-header h2{
+	margin: 5px 0px;
+}

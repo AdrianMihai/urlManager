@@ -1,0 +1,10 @@
+{
+	"env" : {
+		"DATABASE_NAME": "mysql:host=localhost; dbname=urlmanager",
+		"DATABASE_USER": "root",
+		"DATABASE_PASSWORD": "ilikeit2"
+	},
+	"scripts" : {
+		"postdeploy": "npm install"
+	}
+}

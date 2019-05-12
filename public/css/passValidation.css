@@ -1,0 +1,171 @@
+/*Color classes */
+.password-bad{
+	background: #ff1e00;
+}
+.password-weak{
+	background: #ED9B42;
+}
+.password-ok{
+	background: #F7C638;
+}
+.password-strong{
+	background: #48A14D;
+}
+
+.text-bad{
+	color: #ff1e00;
+}
+
+.text-weak{
+	color: #ED9B42;
+}
+
+.text-ok{
+	color:#F7C638;
+}
+
+.text-strong{
+	color:#48A14D;
+}
+
+form[data-tag=passValidation] .information-container{
+	position: relative;
+	max-height: 0;
+	top: -7px;
+
+	overflow: hidden;
+	transition: all .4s ease-in-out;
+}
+
+form[data-tag=passValidation] .information-container.visible{
+	max-height: 100px;
+	top: 0px;
+}
+
+form[data-tag=passValidation] .pass-warning{
+	position: relative;
+	margin: 0;
+	top: -0.5em;
+	left: -0.5em;
+	max-height: 0em;
+
+	font-size: 1em;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+
+	opacity: 0.25;
+	overflow: hidden;
+	transition: all .3s ease-in-out;
+}
+
+form[data-tag=passValidation] .pass-warning.showIt{
+	top: 0;
+	left: 0;
+	opacity: 1;
+	max-height: 1.5em;
+
+	-webkit-transition: all 300ms cubic-bezier(0.000, 1, 0.295, 0); /* older webkit */
+	-webkit-transition: all 300ms cubic-bezier(0.000, 1.650, 0.295, -0.545); 
+	   -moz-transition: all 300ms cubic-bezier(0.000, 1.650, 0.295, -0.545); 
+	     -o-transition: all 300ms cubic-bezier(0.000, 1.650, 0.295, -0.545); 
+	        transition: all 300ms cubic-bezier(0.000, 1.650, 0.295, -0.545); /* custom */
+
+	-webkit-transition-timing-function: cubic-bezier(0.000, 1, 0.295, 0); /* older webkit */
+	-webkit-transition-timing-function: cubic-bezier(0.000, 1.650, 0.295, -0.545); 
+	   -moz-transition-timing-function: cubic-bezier(0.000, 1.650, 0.295, -0.545); 
+	     -o-transition-timing-function: cubic-bezier(0.000, 1.650, 0.295, -0.545); 
+	        transition-timing-function: cubic-bezier(0.000, 1.650, 0.295, -0.545); /* custom */
+}
+
+form[data-tag="passValidation"] .information-container .strength-calculator ul{
+	display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  	display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  	display: -ms-flexbox;      /* TWEENER - IE 10 */
+  	display: -webkit-flex;     /* NEW - Chrome */
+  	display: flex;
+	width: 90%;
+	padding-left: 0px;
+	margin:15px 0px 5px 0px;
+
+	list-style: none;
+}
+
+form[data-tag=passValidation] .result-text + hr:first-of-type{
+	margin: 0.5em 0px 0px 0px;
+	border: 0px solid transparent;
+	border-top:1px solid #f0f0f0;
+}
+
+form[data-tag=passValidation] .information-container .strength-calculator ul li{
+	display: inline-block;
+	height: 14px;
+	width: calc(25% - 5px);
+	margin-right:5px;
+
+	border: 1px solid #f0f0f0;
+	border-radius: 4px;
+}
+
+form[data-tag=passValidation] .information-container .strength-calculator ul li:last-child{
+	margin-right:0;
+}
+
+form[data-tag=passValidation] .information-container .strength-calculator ul li .colored{
+	position: relative;
+	width:0%;
+	height: 100%;
+
+	border-radius: 4px;
+	transition: width .3s ease-in-out;
+}
+form[data-tag=passValidation] .information-container .strength-calculator ul li .colored.full-box{
+	width: 100% !important;
+}
+
+form[data-tag=passValidation] .result-text{
+	margin: 0.75em auto;
+
+	font-weight: bold;
+	font-size:0.85em;
+	transition: color .3s ease-in-out;
+}
+
+/* Design of the password hints */
+form[data-tag=passValidation] .hints ul{
+	position: relative;
+	width:100%;
+	top: -0.5em;
+	max-height: 0px;
+	padding-left: 0px;
+
+	font-size: 0.9em;
+	list-style:none;
+
+	opacity: 0.25;
+	overflow: hidden;
+	transition: all .4s ease-in-out;
+}
+
+form[data-tag=passValidation] .hints ul.visible{
+	max-height: calc(12em + 60px); /*Change the number of ems if a section of the hints' list is not visible */
+	top:0;
+	margin:0.5em auto;
+
+	opacity: 1;
+}
+form[data-tag=passValidation] .hints ul li{
+	padding:6px 15px;
+	margin-bottom: 3px;
+
+	color:#fff;
+	background: #f57979;
+	border:1px solid #d24963;
+	border-radius: 4px;
+
+	transition: all .3s ease-in-out;
+}
+
+form[data-tag=passValidation] .hints ul li.validated{
+	background: #8dc1f3;
+	border-color: #485d7f;
+}
