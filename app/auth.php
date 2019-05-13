@@ -7,7 +7,11 @@
 	{
 		
 		public static function generateCsrfToken() {
-			return bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
+			if (function_exists('mcrypt_create_iv')) {
+				return bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));	
+			}
+			return bin2hex(random_bytes(32));
+			
 		}
 
 		public static function getCsrfToken() {
