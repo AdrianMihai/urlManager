@@ -84,7 +84,7 @@
 				}
 				else {
 					//header("HTTP/1.0 404 Not Found");
-					include_once "/public/views/404.html";
+					include_once "public/views/404.html";
 				}
 			}
 			else if($this->isPost()) {

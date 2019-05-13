@@ -36,7 +36,7 @@
 
 	//Route for accessing an existing account
 	$request->post('login', function($request) {
-		$userModel = new User($request->getDbConnection(), 'Users');
+		$userModel = new User($request->getDbConnection(), 'users');
 		if ($userModel->emailExists($_POST['email'])) {
 			if ($userModel->checkPassword($_POST['email'], $_POST['password'])){
 				//echo var_dump();
@@ -72,7 +72,7 @@
 				));
 		}
 		else {
-			$userModel = new User($request->getDbConnection(), 'Users');
+			$userModel = new User($request->getDbConnection(), 'users');
 
 			if (!$userModel->emailExists($_POST['email'])) {
 				try {
@@ -101,7 +101,7 @@
 	});
 
 	$request->get('logout', function($request) {
-		$userModel = new User($request->getDbConnection(), 'Users');
+		$userModel = new User($request->getDbConnection(), 'users');
 		if (Auth::isLoggedIn()) {
 			Auth::logOut();
 		}
