@@ -1,6 +1,6 @@
 <?php
 	include_once "model.php";
-	include_once "/app/passValidator.php";
+	include_once "app/passValidator.php";
 
 	class User extends Model{
 
