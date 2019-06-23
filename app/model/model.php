@@ -29,14 +29,14 @@
 					$result = $this->dbConnection->prepare($query);
 					$result->execute($params);
 					
-					return $result->fetchAll();
+					return $result->fetchAll(PDO::FETCH_ASSOC);
 				}
 				else{
 
 					$stmt = $this->dbConnection->prepare($query);
 					$stmt->execute();
 
-					return $stmt->fetchAll();
+					return $stmt->fetchAll(PDO::FETCH_ASSOC);
 				}
 				
 			}

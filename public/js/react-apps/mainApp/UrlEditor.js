@@ -197,8 +197,6 @@ class UrlEditor extends React.Component{
 				</Button>
 			);
 		}
-
-		if (this.props.urls) {
 			if (this.props.urls.length > 0) {
 				let filteredUrls = this.filterUrls();
 				
@@ -364,6 +362,5 @@ class UrlEditor extends React.Component{
 		//console.log(this.props);
 	}
 }
-
 
 export default withTheme()(UrlEditor);

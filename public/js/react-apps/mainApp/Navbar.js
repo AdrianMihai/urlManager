@@ -13,11 +13,11 @@ export default class Navbar extends React.Component{
 		return (
 			<AppBar position="fixed">
 				<Toolbar>
-			  		<Typography variant = "title" color="inherit" noWrap style = {{flexGrow: 1}}>
+			  		<Typography variant = "h5" color="inherit" noWrap style = {{flexGrow: 1}}>
 				  		Link Manager
 			  		</Typography>
 					
-					<Typography variant="subheading" color="inherit" noWrap gutterBottom
+					<Typography variant="body1" color="inherit" noWrap gutterBottom
 						align="right" style = {{marginRight: '1em'}}
 					>
           				{this.props.username}

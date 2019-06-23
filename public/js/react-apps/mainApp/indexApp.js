@@ -2,25 +2,27 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Navbar from './Navbar';
 import PaginatedUrlView from './PaginatedUrlView';
-import UrlEditor from './UrlEditor';
 import NotificationsSnackbar from './NotificationsSnackbar';
+import UrlEditorForm from './UrlEditorForm';
 
 import Grid from '@material-ui/core/Grid';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
 
-import {amber, lightBlue} from '@material-ui/core/colors';
+import {amber, lightBlue, green} from '@material-ui/core/colors';
 import "@babel/polyfill";
 
-function colorTheme(theme) {
-	return createMuiTheme({
-		...theme,
-		palette: {
-		    primary: amber,
-			secondary: lightBlue
-		},
-	});
-}
+
+const theme = createMuiTheme({
+	palette: {
+	    primary: amber,
+		secondary: lightBlue,
+		success: green
+	},
+	typography: {
+		useNextVariants: true,
+	}
+});
 
 class App extends React.Component{
 	constructor(props) {
@@ -29,14 +31,14 @@ class App extends React.Component{
 		this.state = {
 			userData: {},
 			urlCategories: [],
-			urls: null,
-			snackbarOpener: null
+			snackbarOpener: null,
+			editorOpener: null,
+			filterLinksFunction: null
 		}
 		
-		this.addNewUrl = this.addNewUrl.bind(this);
-		this.removeUrl = this.removeUrl.bind(this);
-		this.updateUrl = this.updateUrl.bind(this);
 		this.getSnackbarOpener = this.getSnackbarOpener.bind(this);
+		this.getEditorOpener = this.getEditorOpener.bind(this);
+		this.acquireFilterLinksFunction = this.acquireFilterLinksFunction.bind(this);
 	}
 	
 	getSnackbarOpener(opener) {
@@ -45,17 +47,14 @@ class App extends React.Component{
 			snackbarOpener: opener
 		});
 	}
-	
-	addNewUrl(url) {
-		let urls = this.state.urls;
-		urls.push(url);
 
+	getEditorOpener(opener) {
 		this.setState({
-			urls
+			editorOpener: opener
 		});
 	}
 
-	updateUrl(url) {
+	/*updateUrl(url) {
 		let urlIndex = this.state.urls.map(u => u.Id).indexOf(url.Id);
 
 		if (urlIndex >= 0) {
@@ -75,19 +74,24 @@ class App extends React.Component{
 		this.setState({
 			urls: this.state.urls.filter(url => url.Id != urlId)
 		});
+	}*/
+	
+	acquireFilterLinksFunction(func) {
+		if (func) {
+			this.setState({
+				filterLinksFunction: func
+			});
+		}
 	}
 
 	async fetchAppData() {
 		let userData = await postData('/userData');
 		let urlCategories = await postData('/urlCategories');
-		let urls = await postData('/getUrls');
-
-		console.log(urls);
+		//let urls = await postData('/getUrls');
 
 		this.setState({
 			userData: userData,
 			urlCategories: urlCategories,
-			urls: urls
 		});
 	}
 
@@ -97,7 +101,7 @@ class App extends React.Component{
 
 	render() {
 		return (
-			<MuiThemeProvider theme = {colorTheme}>
+			<MuiThemeProvider theme = {theme}>
 				
 				<Navbar 
 					username = {typeof this.state.userData.Username == "undefined" ? "Username" : this.state.userData.Username}
@@ -108,26 +112,23 @@ class App extends React.Component{
 					justify = "center"
 					container
 				>
-
-					<Grid item xs = {12} lg = {6}>
-						<UrlEditor 
-							urls = {this.state.urls}
-							categories = {this.state.urlCategories}
-							addUrl = {this.addNewUrl}
-							removeUrl = {this.removeUrl}
-							updateUrl = {this.updateUrl}
-							openSnackbar = {this.state.snackbarOpener}
-						/>
-					</Grid>
-
-					<Grid item xs = {12} lg = {6} >
+					
+					<Grid item xs = {12} >
 						<PaginatedUrlView 
-							urls = {this.state.urls}
 							categories = {this.state.urlCategories}
+							shareFilterLinksFunction = {this.acquireFilterLinksFunction}
+							openSnackbar = {this.state.snackbarOpener}
+							openEditor = {this.state.editorOpener}
 						/>
 					</Grid>
 				</Grid>
-
+				
+				<UrlEditorForm 
+					categories = {this.state.urlCategories}
+					shareOpener = {this.getEditorOpener}
+					openSnackbar = {this.state.snackbarOpener}
+					filterLinks = {this.state.filterLinksFunction}
+				/>
 				<NotificationsSnackbar shareOpener = {this.getSnackbarOpener} />
           
 			</MuiThemeProvider>

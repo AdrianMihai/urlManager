@@ -24,9 +24,8 @@ body {
     white-space: nowrap;
 } 
 
-.url-editor {
-	box-sizing: border-box;
-	padding: 1em;
+.paper-container {
+	background-color: rgba(255, 255, 255, 0.95) !important;
 }
 
 .tableContainer {

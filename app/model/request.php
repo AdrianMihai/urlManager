@@ -74,7 +74,17 @@
 
 		public function sendResponse() {
 			$pathElements = $elements = explode('/', ltrim($this->uri, '/'));
-			$firstSegment = $pathElements[0];
+			
+			//echo var_dump($pathElements);
+
+			if (strlen($pathElements[0]) > 0) {
+				if ($pathElements[0][0] == '?') {
+					$firstSegment = array_key_exists(1, $pathElements) ? $pathElements[0] : '';
+				}
+			}
+			else {
+				$firstSegment = $pathElements[0];
+			}
 
 			//echo var_dump($pathElements);
 

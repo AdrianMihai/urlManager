@@ -1,3 +1,10 @@
+function clearSignupInputs() {
+	$('#username-signup').val('');
+	$('#email-signup').val('');
+	$('#password-signup').val('');
+	$('#password-conf-signup').val('');
+}
+
 $(document).ready(function() {
 	var notification = document.getElementById('error-message');
 	
@@ -59,6 +66,10 @@ $(document).ready(function() {
 						message: response.message
 					}
 				);
+
+				if (response.status === "OK") {
+					clearSignupInputs();
+				}
 			});
 		}
 	});

@@ -1,9 +1,4 @@
 {
-	"env" : {
-		"DATABASE_NAME": "mysql:host=onnjomlc4vqc55fw.chr7pe7iynqr.eu-west-1.rds.amazonaws.com; dbname=xb2dzh9ddb3104fo",
-		"DATABASE_USER": "hoewnk3mwz6shj7i",
-		"DATABASE_PASSWORD": "ylrmo33pvty76jly"
-	},
 	"scripts" : {
 		"postdeploy": "npm install"
 	}

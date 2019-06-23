@@ -105,5 +105,17 @@
 			return $this->execUpdateStatement("DELETE FROM " . $this->table . " WHERE Id = ?", [$urlId]);
 		}
 
+		public function paginatedUrlsFilter($userId, $category, $pageNumber, $noRows) {
+			$userId = intval($userId);
+			$category = intval($category);
+
+			$urls = $this->execQuery("SELECT * FROM ". $this->table . " WHERE AddedBy = ? AND Category = ?",
+				[$userId, $category]);
+			return [
+				"categoryCount" => count($urls),
+				"urls" => array_slice($urls, $pageNumber * $noRows, $noRows)
+			];
+		}
+
 	}
 ?>

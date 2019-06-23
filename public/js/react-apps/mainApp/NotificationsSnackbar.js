@@ -17,6 +17,17 @@ class NotificationsSnackbar extends React.Component{
 			variant: 'error'
 		};
 
+		this.variantMappings = {
+			success: {
+				icon: "check_circle_outline",
+				color: green[600]
+			},
+			error: {
+				icon: "error_outline",
+				color: this.props.theme.palette.error.dark
+			}
+		};
+
 		this.openSnackbar = this.openSnackbar.bind(this);
 		this.closeSnackbar = this.closeSnackbar.bind(this);
 	}
@@ -36,7 +47,6 @@ class NotificationsSnackbar extends React.Component{
 	}
 
 	componentDidMount() {
-		console.log(this.props);
 		this.props.shareOpener(this.openSnackbar);
 	}
 
@@ -53,12 +63,22 @@ class NotificationsSnackbar extends React.Component{
 	        >
 				<SnackbarContent
 					style = {{
-						backgroundColor: this.state.variant === "success" ? green[600] : this.props.theme.palette.error.dark	
+						backgroundColor: this.variantMappings[this.state.variant].color		
 					}}
 					aria-describedby="client-snackbar"
 					message = {
-						<span id="client-snackbar">
-						  <Icon className = "" />
+						<span 
+							id = "client-snackbar"
+							style = {{
+								display: 'flex',
+    							alignItems: 'center'
+							}}
+						>
+							<Icon
+								style = {{marginRight: `${this.props.theme.spacing.unit}px`}}
+							>
+								{this.variantMappings[this.state.variant].icon}
+							</Icon>
 						  {this.state.message}
 						</span>
 					}

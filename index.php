@@ -285,6 +285,50 @@
 
 	});
 
+	$request->post('filterUrls', function($request) {
+		if (Auth::isLoggedIn()) {
+			$filterCriteria = $request->getJsonData();
+
+			if (array_key_exists('category', $filterCriteria)
+					&& array_key_exists('page', $filterCriteria)
+					&& array_key_exists('rowsPerPage', $filterCriteria)
+			) {
+				$urlModel = new UrlModel($request->getDbConnection(), 'urls');
+
+				try {
+					$urls = $urlModel->paginatedUrlsFilter(
+						Auth::getUserId(),
+						$filterCriteria['category'],
+						$filterCriteria['page'],
+						$filterCriteria['rowsPerPage']
+					);
+					echo json_encode($request->buildResponse(
+						Request::MESSAGE_OK,
+						$urls
+					));
+				}
+				catch (Exception $e) {
+					echo json_encode($request->buildResponse(
+						Request::MESSAGE_ERROR,
+						$e->getMessage()
+					));
+				}
+
+			}
+			else {
+				echo json_encode($request->buildResponse(
+						Request::MESSAGE_ERROR,
+						"Not enough data was supplied for filtering the urls."
+				));
+			}
+		}
+		else {
+			echo json_encode("not authenticated");
+		}
+		
+	});
+
+
 	$request->sendResponse();
 
 ?>

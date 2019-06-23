@@ -1,7 +1,9 @@
 const appName = 'mainApp';
 
-var HTMLWebpackPlugin = require('html-webpack-plugin');
-var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
+const HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
 		template:  './public/js/react-apps/' +  appName + '/index.html',
 		filename: 'index.html',
 		inject: 'body'
