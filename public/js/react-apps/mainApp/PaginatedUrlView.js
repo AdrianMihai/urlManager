@@ -253,7 +253,7 @@ class PaginatedUrlView extends React.Component{
 			//when the categories of the urls have been loaded
 			urls = (
 				<React.Fragment>
-					<Toolbar>
+					<Toolbar className = "links-table-toolbar">
 						<Grid
 							container
 						>

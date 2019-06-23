@@ -76,17 +76,13 @@
 			$pathElements = $elements = explode('/', ltrim($this->uri, '/'));
 			
 			//echo var_dump($pathElements);
+			$firstSegment = $pathElements[0];
 
 			if (strlen($pathElements[0]) > 0) {
 				if ($pathElements[0][0] == '?') {
-					$firstSegment = array_key_exists(1, $pathElements) ? $pathElements[0] : '';
+					$firstSegment = '';
 				}
 			}
-			else {
-				$firstSegment = $pathElements[0];
-			}
-
-			//echo var_dump($pathElements);
 
 			if ($this->isGet()) {
 				if (array_key_exists($firstSegment, $this->getRoutes)){

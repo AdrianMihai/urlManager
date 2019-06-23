@@ -76,3 +76,7 @@ body {
 .editor-header h2{
 	margin: 5px 0px;
 }
+
+.links-table-toolbar {
+	padding-top: 1em;
+}
