@@ -77,7 +77,7 @@
 			
 			//echo var_dump($pathElements);
 			$firstSegment = $pathElements[0];
-
+			
 			if (strlen($pathElements[0]) > 0) {
 				if ($pathElements[0][0] == '?') {
 					$firstSegment = '';
@@ -89,14 +89,15 @@
 					$this->getRoutes[$firstSegment]($this);	
 				}
 				else {
-					//header("HTTP/1.0 404 Not Found");
+					header("HTTP/1.0 404 Not Found");
 					include_once "public/views/404.html";
 				}
 			}
 			else if($this->isPost()) {
+				
 				if (array_key_exists($firstSegment, $this->postRoutes)) {
 					$csrfToken = $this->getPostData('_token');
-
+					
 					if ($csrfToken == null) {
 						$jsonData = $this->getJsonData();
 						//echo var_dump($jsonData);
@@ -109,12 +110,13 @@
 							return null;
 						}
 					}
-
+					
 					if (Auth::checkToken($csrfToken)) {
+						
 						$this->postRoutes[$firstSegment]($this);	
 					}
 					else {
-						//header("HTTP/1.1 401 Unauthorized");
+						header("HTTP/1.1 401 Unauthorized");
 					}
 				}
 

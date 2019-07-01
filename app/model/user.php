@@ -5,6 +5,7 @@
 	class User extends Model{
 
 		public function __construct($dbConnection, $table) {
+			
 			parent::__construct($dbConnection, $table);
 		}
 

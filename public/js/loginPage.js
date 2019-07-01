@@ -19,9 +19,8 @@ $(document).ready(function() {
 		//console.log(_token);
 
 		if (email.length > 0 && password.length > 0) {
-			let postRequest = $.post( "login", {email, password, _token});
-
-			postRequest.done((response) => {
+			$.post( "login", {email, password, _token})
+			.done(function(response){
 				response = JSON.parse(response);
 			
 				if (response.status === "ERROR") {
@@ -35,11 +34,18 @@ $(document).ready(function() {
 				else if (response.status === "OK") {
 					location.reload(true);
 				}
+			})
+			.fail(function(jqXHR, textStatus, errorThrown ) {
+				//console.log(textStatus);
+				//console.log(errorThrown);
+				notification.MaterialSnackbar.showSnackbar(
+					{
+						message: `${errorThrown}. You should refresh the page and try again.`
+					}
+				);
 			});
-		}
-		
-		//console.log(email, password);
-		
+
+		}	
 	});
 
 	main();

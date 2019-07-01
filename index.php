@@ -37,12 +37,15 @@
 	//Route for accessing an existing account
 	$request->post('login', function($request) {
 		$userModel = new User($request->getDbConnection(), 'users');
+		
 		if ($userModel->emailExists($_POST['email'])) {
 			if ($userModel->checkPassword($_POST['email'], $_POST['password'])){
-				//echo var_dump();
+
 				Auth::logIn($userModel->getUserData($_POST['email']));
-				//header('Location: /');
-				echo json_encode($request->buildResponse("OK", "Successfully logged in."));
+
+				echo json_encode($request->buildResponse(
+					Request::MESSAGE_OK, "Successfully logged in."
+				));
 			}
 			else {
 				echo json_encode($request->buildResponse(
